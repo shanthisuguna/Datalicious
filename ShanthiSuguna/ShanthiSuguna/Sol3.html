@@ -2,9 +2,36 @@
 <html>
 <head>
     <title></title>
-	<meta charset="utf-8" />
+    <meta charset="utf-8"/>
+   
 </head>
 <body>
+<div id="test"></div>
 
 </body>
+<!-- Script needs to be run after the body tag -->
+<script>
+
+    //The console.log will display 5 everytime because of i variable is inside the loop.
+    for (var i = 0; i < 5; i++) {
+        //debugging
+        debugger;
+        var btn = document.createElement('button');
+        btn.id = i;
+        btn.appendChild(document.createTextNode('Button ' + i));
+
+        btn.onclick = Log(i);
+        document.body.appendChild(btn);
+    }
+    //closure in loops
+    //when the btn is clicked , the i value which is in closure inside the loop is already 5.
+    //Hence whenever any btn is clicked we get the value 5 -- we are calling the address of i which is never changed :::::: i====> 5:::::::::
+    //The solution for this is achaieved by calculating the value of i before assigning to the event listener
+    function Log(x) {
+        return function () {
+            console.log(x);
+        }
+    }
+
+</script>
 </html>
