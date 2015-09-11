@@ -4,32 +4,29 @@
     <title></title>
     <meta charset="utf-8" />
     <script>
-        var url = "http://www.datalicious.com/?pia.ca=72208039&pie.de=cbartens@datalicious.com&pin.gn=Christian&pin.fn=Bartens&pip.de=&oi.na=&ps.na=&pl.ci=&pl.re=&pl.co=&utm_source=purl&utm_medium=purl&utm_campaign=purl";
-        //split the url into the domain + query string
-        var urlquery = url.split("?")[1];
-        //Store the query strings in an array
-        var query = urlquery.split("&");
-        for (var i = 0; i < query.length; i++) {
-            var kValue = query[i].split("=");
-            //print the value of the query strings
-            console.log("The value of :"+kValue[0] +" is "+ kValue[1]);
-        }
-        //Out put
-        //The value of :pia.ca is 72208039
-        //Sol4.html:13 The value of :pie.de is cbartens@datalicious.com
-        //Sol4.html:13 The value of :pin.gn is Christian
-        //Sol4.html:13 The value of :pin.fn is Bartens
-        //Sol4.html:13 The value of :pip.de is 
-        //Sol4.html:13 The value of :oi.na is 
-        //Sol4.html:13 The value of :ps.na is 
-        //Sol4.html:13 The value of :pl.ci is 
-        //Sol4.html:13 The value of :pl.re is 
-        //Sol4.html:13 The value of :pl.co is 
-        //Sol4.html:13 The value of :utm_source is purl
-        //Sol4.html:13 The value of :utm_medium is purl
-        //Sol4.html:13 The value of :utm_campaign is purl
 
-       
+        function getQueryStrings(url) {
+            //split the url into the domain + query string
+            var urlquery = url.split("?")[1];
+            //Store the query strings in an array
+            var query = urlquery.split("&");
+            var datalayer = [];
+            for (var i = 0; i < query.length; i++) {
+                var kValue = query[i].split("=");
+                //print the value of the query strings
+                datalayer.push({ key: kValue[0], value: kValue[1] });
+                //element pushed
+                //  console.log("pushed: " + kValue[0] + " with" + kValue[1]);
+            }
+            return datalayer;
+        }
+        var url = "http://www.datalicious.com/?pia.ca=72208039&pie.de=cbartens@datalicious.com&pin.gn=Christian&pin.fn=Bartens&pip.de=&oi.na=&ps.na=&pl.ci=&pl.re=&pl.co=&utm_source=purl&utm_medium=purl&utm_campaign=purl";
+      var datalayer=  getQueryStrings(url);
+
+        console.log(datalayer[0].value);
+      
+
+
 
     </script>
 </head>

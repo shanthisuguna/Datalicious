@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8"/>
+    
+</head>
+<body>
+<button id="btn1">Click Here</button>
+</body>
+<script>
+    function Alert(msg) {
+        alert(msg);
+    }
+    debugger;
+    //Works on IE
+    var btn = document.getElementById('btn1');
+   // btn.attachEvent('onclick',Alert('Hello from IE'));
+
+
+    //works on Chrome /Firefox
+
+    btn.addEventListener('click', Alert('Hello from Others'), false);
+
+
+</script>
+</html>

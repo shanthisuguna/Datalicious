@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8"/>
+ 
+</head>
+<body>
+
+</body>
+<script>
+        function getQueryStrings(url) {
+            //split the url into the domain + query string
+            var urlquery = url.split("?")[1];
+            //Store the query strings in an array
+            var query = urlquery.split("&");
+            var datalayer = [];
+            for (var i = 0; i < query.length; i++) {
+                var kValue = query[i].split("=");
+                //print the value of the query strings
+                datalayer.push({ key: kValue[0], value: kValue[1] });
+                //element pushed
+                //  console.log("pushed: " + kValue[0] + " with" + kValue[1]);
+            }
+            //saving the datalayer
+            Save(datalayer);
+        }
+
+        debugger;
+        var url = "http://www.datalicious.com/?pia.ca=72208039&pie.de=cbartens@datalicious.com&pin.gn=Christian&pin.fn=Bartens&pip.de=&oi.na=&ps.na=&pl.ci=&pl.re=&pl.co=&utm_source=purl&utm_medium=purl&utm_campaign=purl";
+        var datalayer = getQueryStrings(url);
+        createImageTag("www.image.com?",1);
+        //creating the image
+
+
+
+
+
+    //function to create the image tag with 
+    //url --- the image source url base
+    //datalayer -- taking the datalayer as an input for the query string
+    //count--- the no of queries needed for the image
+        function createImageTag(url, count) {
+            //if the no of objects in the datalyer is less than the count passed
+            var datalayer =GetDatalayer();
+            if (datalayer.length<count) {
+                console.log("invalid count passed");
+            }
+            debugger;
+            var img = document.createElement("img");
+            var imgSrcbaseUrl = url + "/datacollector?";
+            for (var i = 0; i < count; i++) {
+                if (i=== 0 || i === count) {
+                    //first element -- no need to add the &
+                    imgSrcbaseUrl += datalayer[i].key + "=" + datalayer[i].value;
+
+
+                }
+                else {
+                    //Add the & after every querystring
+                    imgSrcbaseUrl +="&"+ datalayer[i].key + "=" + datalayer[i].value;
+                }
+                
+            }
+            img.src = imgSrcbaseUrl;
+            document.body.appendChild(img);
+            
+            console.log(imgSrcbaseUrl);
+        }
+
+
+    ///Sol :6
+    //Save the datalayer to the local storage 
+
+    //Saving the datalayer in the local storage
+    function Save(datalayer) {
+        localStorage.setItem("datalayer", JSON.stringify(datalayer));
+        console.log("Saved datalayer");
+
+    }
+    //Get the datalayer
+    function GetDatalayer() {
+        console.log("Datalayer retreival");
+        return JSON.parse(localStorage.getItem("datalayer"));
+    }
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
