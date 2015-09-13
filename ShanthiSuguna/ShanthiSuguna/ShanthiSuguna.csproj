@@ -79,7 +79,7 @@
     <Content Include="Sol2.html" />
     <Content Include="Sol3.html" />
     <Content Include="Sol4.html" />
-    <Content Include="Sol5.html" />
+    <Content Include="Sol5and6.html" />
     <Content Include="Sol7.html" />
     <Content Include="Web.config" />
   </ItemGroup>

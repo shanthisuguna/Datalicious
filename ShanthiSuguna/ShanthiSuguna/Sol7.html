@@ -7,20 +7,47 @@
 </head>
 <body>
 <button id="btn1">Click Here</button>
+<div class="demoDiv" style="background-color:aquamarine">Hello world</div>
+
+
 </body>
 <script>
     function Alert(msg) {
         alert(msg);
     }
     debugger;
+
+    //1 . attachEvent vs addEventListener
     //Works on IE
     var btn = document.getElementById('btn1');
-   // btn.attachEvent('onclick',Alert('Hello from IE'));
-
-
+    btn.attachEvent('onclick',Alert('Hello from IE'));
     //works on Chrome /Firefox
-
     btn.addEventListener('click', Alert('Hello from Others'), false);
+
+    //2. accessing style attributes of elements
+    //IE -only
+    var myObject = document.getElementById("divDemo");
+    var myStyle = myObject.currentStyle.backgroundColor;
+    //Rest of the browsers
+    var myComputedStyle = document.defaultView.getComputedStyle(myObject, null);
+    var myStyle = myComputedStyle.backgroundColor;
+
+
+    //3. Accessing the class attribute 
+    //IE
+    var myAttribute = myObject.getAttribute("className");
+    //Others
+    var myAttribute = myObject.getAttribute("class");
+
+    //4. Getting the cursor position
+    //IE
+    var myCursorPosition = [0, 0];
+    myCursorPosition[0] = event.clientX;
+    myCursorPosition[1] = event.clientY;
+    //Firefox
+    var myCursorPosition = [0, 0];
+    myCursorPosition[0] = event.pageX;
+    myCursorPosition[1] = event.pageY;
 
 
 </script>
